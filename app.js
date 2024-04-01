@@ -1,5 +1,7 @@
 //jshint esversion:6
 
+require('dotenv').config(); // Load environment variables from .env file
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -26,7 +28,7 @@ app.use(express.static("public"));
 main().catch((err) => console.log(err));
 async function main() {
   // Use await
-  await mongoose.connect("mongodb://127.0.0.1:27017/todolistDB");
+  await mongoose.connect(process.env.MONGODB_URI);
   // mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
   console.log("Successfully connected to the database");  
 
